@@ -1,0 +1,42 @@
+#:kivy 1.11.1
+#:include pipe.kv
+FloatLayout:
+    Background:
+        id:background
+        canvas.before:
+            Rectangle:
+                size:self.size
+                pos:self.pos
+                source:'bi.jpg'
+            Rectangle:
+                size:self.width, 100
+                pos:self.pos[0],self.pos[1]+self.height-100
+                texture:self.cloud_texture
+            Rectangle:
+                size:self.width, 100
+                pos:self.pos[0],self.pos[1]
+                texture: self.floor_texture
+    Button:
+        text:'Start Game'
+        background_normal:'bi.jpg'
+        font_size:50
+        background_down:'bi.jpg'
+        id: button
+        
+        on_release:
+            app.start()
+            self.disabled = True
+            self.opacity  = 0
+    Label:
+        id:score
+        text: '0'
+        size_hint_y : None
+        font_size : 40
+    Char:
+        source: "bird1.png"
+        size_hint: None, None
+        size: 46, 34
+        pos: 20, (root.height - 96) / 2.0
+        id: char
+        
+
